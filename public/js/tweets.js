@@ -7,6 +7,16 @@ var count = 0;
 var play = true;
 var censor = window.location.search.indexOf("censor=true") > -1;
 var infoWindow = new google.maps.InfoWindow();
+var audioOne = new Audio('http://maxwellzirbel.com/beats/HighA.wav');
+var audioTwo = new Audio('http://maxwellzirbel.com/beats/HighF.wav');
+var audioThree = new Audio('http://maxwellzirbel.com/beats/HighD.wav');
+var audioFour = new Audio('http://maxwellzirbel.com/beats/LowA.wav');
+var audioFive = new Audio('http://maxwellzirbel.com/beats/ReallyHighD.wav');
+var audioSix = new Audio('http://maxwellzirbel.com/beats/MidA.wav');
+var audioSeven = new Audio('http://maxwellzirbel.com/beats/MidD.wav');
+var audioEight = new Audio('http://maxwellzirbel.com/beats/MidF.wav');
+var audioNine = new Audio('http://maxwellzirbel.com/beats/LowD.wav');
+
 
 // Socket open event
 ws.onopen = function () {
@@ -45,7 +55,97 @@ function handleTweet(message) {
             var bounds = map.getBounds();
             if (bounds && bounds.contains(lat_lon)) {
 
-                // Place marker
+                //find ne and sw of bounds
+                var ne = bounds.getNorthEast();
+                var sw = bounds.getSouthWest();
+                var y1 = ne.lat();
+                var y2 = sw.lat();
+                var x1 = ne.lng();
+                var x2 = sw.lng();
+
+
+                //divide map into thirds
+                var y3rd = (y1 - y2) / 3;
+                var x3rd = (x1 - x2) / 3;
+
+                var oneNE = new google.maps.LatLng((y2 + y3rd), (x2 + x3rd));
+                var oneSW = new google.maps.LatLng(y2, x2);
+                var twoNE = new google.maps.LatLng((y1 - y3rd), (x2 + x3rd));
+                var twoSW = new google.maps.LatLng((y2 + y3rd), x2 );
+                var threeNE = new google.maps.LatLng(y1, (x2 + x3rd));
+                var threeSW = new google.maps.LatLng((y1 - y3rd), x2 );
+
+                var fourNE = new google.maps.LatLng((y2 + y3rd), (x1 - x3rd));
+                var fourSW = new google.maps.LatLng(y2, (x2 + x3rd));
+                var fiveNE = new google.maps.LatLng((y1 - y3rd),(x1 - x3rd));
+                var fiveSW = new google.maps.LatLng((y2 + y3rd), (x2 + x3rd));
+                var sixNE = new google.maps.LatLng(y1,(x1 - x3rd));
+                var sixSW = new google.maps.LatLng((y1 - y3rd), (x2 + x3rd));
+
+                var sevenNE = new google.maps.LatLng((y2 + y3rd), x1);
+                var sevenSW = new google.maps.LatLng(y2, (x1 - x3rd));
+                var eightNE = new google.maps.LatLng((y1 - y3rd),x1);
+                var eightSW = new google.maps.LatLng((y2 + y3rd), (x1 - x3rd));
+                var nineNE = new google.maps.LatLng(y1,x1);
+                var nineSW = new google.maps.LatLng((y1 - y3rd), (x1 - x3rd));
+
+                var one = new google.maps.LatLngBounds(oneSW, oneNE);
+                var two = new google.maps.LatLngBounds(twoSW, twoNE);
+                var three = new google.maps.LatLngBounds(threeSW, threeNE);
+                var four = new google.maps.LatLngBounds(fourSW, fourNE);
+                var five = new google.maps.LatLngBounds(fiveSW, fiveNE);
+                var six = new google.maps.LatLngBounds(sixSW, sixNE);
+                var seven = new google.maps.LatLngBounds(sevenSW, sevenNE);
+                var eight = new google.maps.LatLngBounds(eightSW, eightNE);
+                var nine = new google.maps.LatLngBounds(nineSW, nineNE);
+
+
+//                TEST Block
+//                console.log("NorthEast :" + ne);
+//                console.log("SouthWest :" + sw);
+//                console.log("one: " + one.getCenter());
+//                console.log("two: " + two.getCenter());
+//                console.log("three: " + three.getCenter());
+//                console.log("four: " + four.getCenter());
+//                console.log("five: " + five.getCenter());
+//                console.log("six: " + six.getCenter());
+//                console.log("seven: " + seven.getCenter());
+//                console.log("eight: " + eight.getCenter());
+//                console.log("nine: " + nine.getCenter());
+//
+//                debugger;
+
+//                mySound.play()
+//                    .fadeIn()
+//                    .loop()
+//                    .bind( "timeupdate", function() {
+//                        var timer = buzz.toTimer( this.getTime() );
+//                        document.getElementById( "timer" ).innerHTML = timer;
+//                    });
+
+                if(one.contains(lat_lon)){
+                    audioOne.play();
+
+                } else if(two.contains(lat_lon)){
+                    audioTwo.play();
+                } else if(three.contains(lat_lon)){
+                    audioThree.play();
+                } else if(four.contains(lat_lon)){
+                    audioFour.play();
+                } else if(five.contains(lat_lon)){
+                    audioFive.play();
+                } else if(six.contains(lat_lon)){
+                    audioSix.play();
+                } else if(seven.contains(lat_lon)) {
+                    audioSeven.play();
+                } else if(eight.contains(lat_lon)) {
+                    audioEight.play();
+                } else if(nine.contains(lat_lon)) {
+                    audioNine.play();
+                } else {
+                    console.log("NOT ON MAP!?!?!");
+                }
+                    // Place marker
                 var marker = new google.maps.Marker({
                     position: lat_lon,
                     map: map,
