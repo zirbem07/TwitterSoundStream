@@ -1,0 +1,9 @@
+I, [2014-09-02T16:21:09.206254 #1668]  INFO -- : Starting application
+I, [2014-09-02T16:21:09.284236 #1668]  INFO -- : Parsing options...
+I, [2014-09-02T16:21:09.284859 #1668]  INFO -- : Starting websocket server
+I, [2014-09-02T16:21:09.299278 #1668]  INFO -- : Loading Twitter credentials from /Users/maxwellzirbel/temp/TwitterSoundStream/config/twitter.yml
+I, [2014-09-02T16:21:09.301454 #1668]  INFO -- : Making connection to Twitter streaming API...
+I, [2014-09-02T16:21:18.688205 #1668]  INFO -- : Serving incoming request from 127.0.0.1
+I, [2014-09-02T16:21:20.342612 #1668]  INFO -- : WebSocket connection open
+I, [2014-09-02T16:21:20.342713 #1668]  INFO -- : 1 clients connected
+I, [2014-09-02T16:21:51.487996 #1668]  INFO -- : Websocket connection closed
