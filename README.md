@@ -19,7 +19,7 @@ To configure and run this example, do the following:
 
 - Clone this repo or download the code and unzip
 
-- `cd sample-ruby-app`
+- `cd TwitterSoundStream`
 
 - If on OSX and using homebrew, you may need `brew link autoconf` if it has not been linked already
 
